@@ -11,7 +11,7 @@ async function  login(req, res){
  
      
        if (!user) {
-           return res.status(400).send({ status:false,msg: "Login deatils are invalid" })
+           return res.status(400).send({ status:false,msg: "Enter Login Details " })
        };
        return res.status(200).send({ status:true,msg: "Login successful" })
    }
