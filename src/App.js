@@ -6,7 +6,7 @@ import './App.css';
 const App = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [cookies, setCookie] = useCookies(['user']);
+  const [cookies, setCookie,removeCookie] = useCookies(['user']);
   const [status, setStatus] = useState(false)
   const [visible, setVisible] = useState(false)
   const [msg, setmsg] = useState("")
@@ -23,9 +23,19 @@ const App = () => {
   };
   useEffect(() => {
     loginCall()
-
-
   }, [])
+  function Logout(){
+    removeCookie("Email")
+    removeCookie("Password")
+    setStatus(false)
+  }
+  function ClearAll(){
+    removeCookie("Email")
+    removeCookie("Password")
+    removeCookie("Message")
+    setStatus(false)
+  }
+
   function loginCall() {
     let data
     if (email && password) data = { email, password }
@@ -65,16 +75,16 @@ const App = () => {
             <button onClick={handle}>Search button 2</button>
 
             <h3>Search text message</h3>
-            <input placeholder="Search text message" value={message} onChange={(e) => setMessage(e.target.value)} />
+            <input placeholder="Search text message"  />
             <button onClick={handle}>Search button 2</button>
 
             <h3>Search Results Here </h3>
-            <div className='textar'>h</div>
+            <div className='textar'></div>
 
 
-            <button>Clear All</button>
+            <button onClick={Logout}>Clear All</button>
             <br></br><br></br>
-            <button>Logout</button>
+            <button onClick={ClearAll}>Logout</button>
 
           </div> :
           <div>
